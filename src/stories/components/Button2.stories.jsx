@@ -4,7 +4,7 @@ import {action} from "@storybook/addon-actions";
 
 //story를 포함한 전반적인 내용을 설정, 각 story에서 내용을 수정 할수 있음.
 export default {
-  title: "Accordion(아코디언)/Button",
+  title: "components/checkbox",
   component: Button,
   tags: ["autodocs"], // 최신 Storybook 자동 문서화 지원
   parameters: {

@@ -4,7 +4,7 @@ import {useArgs} from "storybook/internal/preview-api";
 import {action} from "@storybook/addon-actions";
 
 const defaultExport = {
-  title: "components/Editor",
+  title: "diary/Editor",
   component: Editor,
   tags: ["autodocs"], // 최신 Storybook 자동 문서화 지원
   decorators: [
@@ -21,14 +21,14 @@ const defaultExport = {
       createdDate: new Date("2020-01-01"),
       emotionId: 3,
       content: ""
-    },
-    onSubmit: action("submitted")
+    }
+    //onSubmit: action("submitted")
   },
 
   argTypes: {
     placeholder: {control: "text"},
-    initData: {control: "object"},
-    onSubmit: {action: "submitted"}
+    initData: {control: "object"}
+    //onSubmit: {action: "submitted"}
     //onClick: {action: "clicked"}
   }
 };
@@ -43,25 +43,24 @@ export const Default = {
   }
 };
 */
-export const Interactive = (args) => {
+export const Emotion1 = (args) => {
+  //console.log("dddddd", args);
   const [{initData}, setArgs] = useArgs();
 
   const handleChange = (newInput) => {
-    //action("submitted")(newInput);
-    action("submitted")();
-    console.log("저장 버튼 클릭됨");
-    console.log(newInput);
+    setArgs({initData: newInput});
+    action("submitted")(newInput);
   };
 
   return (
     <Editor
-      {...args}
+      placeholder={args.placeholder}
       initData={initData}
       onSubmit={handleChange}
     />
   );
 };
-Interactive.args = {
+Emotion1.args = {
   initData: {
     ...defaultExport.args.initData,
     id: 1,
@@ -71,30 +70,13 @@ Interactive.args = {
   }
 };
 
-export const WithText = {
+export const Emotion2 = {
   args: {
-    value: "",
-    placeholder: "내용을 입력하세요...",
-    disabled: false,
-    onChange: (e) => console.log("입력값 변경:", e.target.value)
-  }
-};
-
-export const Disabled = {
-  args: {
-    value: "비활성화된 입력 상태",
-    placeholder: "내용을 입력하세요...",
-    disabled: true
-  }
-};
-
-export const WithSaveAndCancel = {
-  args: {
-    value: "저장 및 취소 버튼 포함",
-    placeholder: "내용을 입력하세요...",
-    disabled: false,
-    onChange: (e) => console.log("입력값 변경:", e.target.value),
-    onSave: () => console.log("저장 버튼 클릭됨"),
-    onCancel: () => console.log("취소 버튼 클릭됨")
+    placeholder: "emotion2",
+    initData: {
+      ...defaultExport.args.initData,
+      emotionId: 2
+    },
+    onSubmit: action("submitted")
   }
 };

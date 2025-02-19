@@ -4,7 +4,7 @@ import {action} from "@storybook/addon-actions";
 
 //story를 포함한 전반적인 내용을 설정, 각 story에서 내용을 수정 할수 있음.
 export default {
-  title: "components/Button",
+  title: "diary/Button",
   component: Button,
   tags: ["autodocs"], // 최신 Storybook 자동 문서화 지원
   parameters: {
@@ -20,7 +20,7 @@ export default {
   args: {
     text: "Click Me",
     type: "POSITIVE",
-    onClick: fn()
+    onClick: action("clicked")
   },
   /* 특정 Props를 Storybook에서 제어하는 방식 정의 */
   argTypes: {
@@ -30,14 +30,13 @@ export default {
       options: ["DEFAULT", "POSITIVE", "NEGATIVE"] // Button.css에 정의된 스타일
     }
     //onClick: {action: "clicked"}
-  },
-  defaultArgs: {
-    text: "Click Me"
   }
 };
 
 const handleChange = () => {
-  action("d")("a");
+  //action("d")("a");
+  //action("clicked")("a");
+  fn();
 };
 export const Default = {
   parameters: {
@@ -48,16 +47,15 @@ export const Default = {
     }
   },
   args: {
-    text: "Click Me!!!",
-    onClick: handleChange //onClick 이벤트 로그 확인
+    text: "Click Me!!!"
   }
 };
 
 export const Positive = {};
-Positive.args = {type: "POSITIVE"};
+Positive.args = {type: "POSITIVE", onClick: fn()};
 
 export const Negative = {};
 Negative.args = {
   type: "NEGATIVE",
-  onClick: fn()
+  onClick: handleChange()
 };
