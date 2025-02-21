@@ -8,13 +8,13 @@ export default {
   component: Button,
   tags: ["autodocs"], // 최신 Storybook 자동 문서화 지원
   parameters: {
-    layout: "centered",
-    docs: {
-      description: {
-        component: "Button component", //기본적으로 컴포넌트의 JSDoc 를 가져오지만 여기서 override 함
-        story: "Button component1" //스토리의 주석, 각 스토리에서 override 할수 있음
-      }
-    }
+    layout: "centered"
+    // docs: {
+    //   description: {
+    //     component: "Button component", //기본적으로 컴포넌트의 JSDoc 를 가져오지만 여기서 override 함
+    //     story: "Button component1" //스토리의 주석, 각 스토리에서 override 할수 있음
+    //   }
+    // }
   },
   /* Component의 Props 값을 설정하는 역활 */
   args: {
